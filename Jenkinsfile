@@ -15,19 +15,19 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 sh 'python3 -m venv ${VENV_DIR}'
-                sh 'source ${VENV_DIR}/bin/activate && pip install -r requirements.txt'
+                sh '. ${VENV_DIR}/bin/activate && pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'source ${VENV_DIR}/bin/activate && pytest'
+                sh '. ${VENV_DIR}/bin/activate && pytest'
             }
         }
 
         stage('Build Artifact') {
             steps {
-                sh 'source ${VENV_DIR}/bin/activate && python setup.py sdist'
+                sh '. ${VENV_DIR}/bin/activate && python setup.py sdist'
             }
         }
 
